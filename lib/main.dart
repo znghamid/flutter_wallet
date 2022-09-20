@@ -49,31 +49,68 @@ class _HomePageState extends State<HomePage> {
           statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
           statusBarBrightness: Brightness.light, // For iOS (dark icons)
         ),
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.menu_rounded),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          }
-        ),
+        leading: Builder(builder: (context) {
+          return IconButton(
+            icon: const Icon(Icons.menu_rounded),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          );
+        }),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications),
+          ),
+        ],
         title: Text(
           'My Wallet\'s',
           style: GoogleFonts.quicksand(
             color: const Color(0xff1E1F28),
+            fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: const [
-            DrawerHeader(
-              child: Text("Hello"),
+      drawer: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Drawer(
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
             ),
-          ],
+            width: 280,
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: const Color(0xffB8B9C9),
+                            width: 1,
+                          ),
+                          image: const DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage("lib/assets/img/profile.jpg"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
       body: SafeArea(
@@ -85,7 +122,7 @@ class _HomePageState extends State<HomePage> {
               // Top Card
               Container(
                 width: size!.width - 28,
-                height: 230,
+                height: 200,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     begin: Alignment.topRight,
